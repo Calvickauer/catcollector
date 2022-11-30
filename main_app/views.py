@@ -2,15 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
-def index(request):
-    return HttpResponse('Hello Boi meets world....')
+def index(response):
+    return render(response, 'index.html')
 
-def about(repsonse):
-    return HttpResponse("About Boi meets World!!")
+def about(response):
+    return render(response, 'about.html')
 
-def  contact(response):
-    return HttpResponse("Contact boi meets World")
+def contact(response):
+    return render(response, 'contact.html')
 
 def blog(response):
-    return HttpResponse("Blog about boi meets world")
+    return render(response, 'blog.html')
 
