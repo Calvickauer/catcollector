@@ -1,36 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-class Cat:
-    def __init__(self, name, breed, description, age):
-        self.name = name
-        self.breed = breed
-        self.description = description
-        self.age = age
-    
-    def __str__(self):
-        return f"{self.name}"
-
-
-cats = [
-    Cat("Jimmy", "Criqourtor", "Freaky with sauciness", 103),
-    Cat("Billy", "Bildonic", "Gravy kitty", 2),
-    Cat("Garfield", "Siamese", "Fat and mean", 10)
-]
+# cat model connected to DB
+from .models import Cat
 
 # Create your views here.
-def index(response):
-    return render(response, 'index.html', { 'cats': cats })
+def index(request):
+    cats = list(Cat.objects.all())
+    return render(request, 'index.html', { 'cats': cats })
 
-def about(response):
-    return render(response, 'about.html')
+def about(request):
+    return render(request, 'about.html')
 
-def contact(response):
-    return render(response, 'contact.html')
+def contact(request):
+    return render(request, 'contact.html')
 
-def blog(response):
-    return render(response, 'blog.html')
+def blog(request):
+    return render(request, 'blog.html')
 
-def cats_index(response):
-    return render(response, 'cats/index.html', { 'cats': cats })
+def cats_index(request):
+    cats = list(Cat.objects.all())
+    return render(request, 'cats/index.html', { 'cats': cats })
 
+def cats_show(request, cat_id):
+    cat = Cat.objects.get(id = cat_id)
+    
+    return render(request, 'cats/show.html', {'cat': cat})
