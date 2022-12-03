@@ -6,4 +6,8 @@
 <p> description: {{cat.description}} </p>
 <p> age: {{cat.age}} </p>
 
+{% comment %} add links {% endcomment %}
+<a href="{% url 'cats_update' cat.id %}" class='btn btn-warning'> Update details </a>
+<a href="{% url 'cats_delete' cat.id %}" class='btn btn-danger'> Delete Kitty </a>
+<a href="/cats/{{ cat.id }}/update" class='btn btn-warning'> Update details </a>
 {% endblock %}
